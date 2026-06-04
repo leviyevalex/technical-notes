@@ -1,0 +1,10 @@
+site/public/
+site/resources/
+
+# LaTeX intermediate files from figure rendering
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.out
+*.pdf

@@ -1,0 +1,17 @@
+baseURL = "http://localhost:1313/"
+languageCode = "en-us"
+title = "Technical Notes"
+theme = "hugo-bearcub"
+
+[params]
+  description = "Notes on mathematics, algorithms, and quantitative finance."
+  favicon = ""
+  [params.author]
+    name  = "Alex Leviyev"
+    email = "leviyevalex@gmail.com"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup.highlight]
+  style = "monokai"

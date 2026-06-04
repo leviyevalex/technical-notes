@@ -1,0 +1,69 @@
+<script>
+MathJax = {
+  tex: {
+    inlineMath:  [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    tags: 'ams'
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+.theorem, .lemma, .proposition, .corollary {
+  border-left: 3px solid #8cc2dd;
+  background: #1e2a35;
+  padding: 0.6em 1em;
+  margin: 1em 0;
+  border-radius: 0 4px 4px 0;
+  color: #c9d1d9;
+}
+.definition {
+  border-left: 3px solid #56a97a;
+  background: #1a2820;
+  padding: 0.6em 1em;
+  margin: 1em 0;
+  border-radius: 0 4px 4px 0;
+  color: #c9d1d9;
+}
+.remark, .note {
+  border-left: 3px solid #666;
+  background: #252530;
+  padding: 0.6em 1em;
+  margin: 1em 0;
+  color: #aaa;
+}
+.corollary {
+  border-left-color: #9d8cdd;
+  background: #21203a;
+}
+.proof {
+  padding: 0.4em 1em;
+  margin: 1em 0;
+  color: #c9d1d9;
+}
+.proof::before {
+  content: "Proof.\00a0";
+  font-style: italic;
+  font-weight: bold;
+}
+
+figure {
+  text-align: center;
+  margin: 1.5em 0;
+}
+figure img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+/* SVG figures: fill text width, invert white bg → dark, preserve hues */
+figure img[src$=".svg"] {
+  filter: invert(1) hue-rotate(180deg);
+  border-radius: 4px;
+  width: 85%;
+  max-width: 85%;
+  display: block;
+  margin: 0 auto;
+}
+figcaption { font-size: 0.9em; color: #888; margin-top: 0.4em; }
+</style>

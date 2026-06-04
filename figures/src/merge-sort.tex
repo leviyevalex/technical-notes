@@ -1,0 +1,15 @@
+\documentclass[border=4pt]{standalone}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\begin{document}
+\begin{algorithm}[H]
+  \SetAlgoLined
+  \KwIn{array $A[l \ldots r]$}
+  \KwOut{$A$ sorted in place}
+  \If{$l \geq r$}{\Return}
+  $m \leftarrow \lfloor (l + r) / 2 \rfloor$\;
+  \textsc{MergeSort}$(A, l, m)$\;
+  \textsc{MergeSort}$(A, m+1, r)$\;
+  \textsc{Merge}$(A, l, m, r)$\;
+  \caption{\textsc{MergeSort}}
+\end{algorithm}
+\end{document}

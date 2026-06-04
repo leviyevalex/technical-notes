@@ -1,0 +1,71 @@
+/* Base */
+body {
+  max-width: 760px;
+  margin: 2em auto;
+  padding: 0 1em;
+  font-family: Georgia, serif;
+  font-size: 1.05em;
+  line-height: 1.7;
+  color: #222;
+}
+
+header { border-bottom: 1px solid #ddd; margin-bottom: 2em; padding-bottom: 0.5em; }
+header nav a { font-family: sans-serif; text-decoration: none; font-weight: bold; color: #333; }
+
+h1, h2, h3 { font-family: sans-serif; }
+h1 { font-size: 1.8em; }
+time { font-size: 0.9em; color: #666; display: block; margin-bottom: 1.5em; }
+
+a { color: #1e5080; }
+a:hover { text-decoration: underline; }
+
+/* Post list */
+.post-list { list-style: none; padding: 0; }
+.post-list li { margin: 0.5em 0; display: flex; justify-content: space-between; }
+.post-list .date { color: #666; font-size: 0.9em; font-family: monospace; }
+
+/* Tables */
+table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+th, td { border: 1px solid #ccc; padding: 0.4em 0.8em; text-align: left; }
+th { background: #f4f4f4; }
+
+/* Figures */
+figure { text-align: center; margin: 1.5em 0; }
+figure img, figure svg { max-width: 100%; }
+figcaption { font-size: 0.9em; color: #555; margin-top: 0.4em; }
+
+/* Theorem environments */
+.theorem, .lemma, .proposition, .corollary {
+  border-left: 3px solid #1e5080;
+  background: #f0f4ff;
+  padding: 0.6em 1em;
+  margin: 1em 0;
+  border-radius: 0 4px 4px 0;
+}
+.definition {
+  border-left: 3px solid #14643c;
+  background: #f0fff4;
+  padding: 0.6em 1em;
+  margin: 1em 0;
+  border-radius: 0 4px 4px 0;
+}
+.remark, .note {
+  border-left: 3px solid #888;
+  background: #f9f9f9;
+  padding: 0.6em 1em;
+  margin: 1em 0;
+}
+.proof {
+  padding: 0.4em 1em;
+  margin: 1em 0;
+  color: #333;
+}
+.proof::before {
+  content: "Proof.\00a0";
+  font-style: italic;
+  font-weight: bold;
+}
+
+/* Code */
+pre { background: #f4f4f4; padding: 1em; overflow-x: auto; border-radius: 4px; }
+code { font-size: 0.9em; }
