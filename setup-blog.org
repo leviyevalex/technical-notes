@@ -1,4 +1,6 @@
 #+OPTIONS: toc:t num:t ':t todo:nil tags:nil pri:nil stat:nil planning:nil prop:nil
+#+HUGO_BASE_DIR: ~/Documents/org/blog/site
+#+HUGO_SECTION: posts
 
 # --- Math (web-safe subset only) ---
 #+LATEX_HEADER: \usepackage{amsmath}

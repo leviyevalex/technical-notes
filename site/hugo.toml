@@ -15,3 +15,6 @@ theme = "hugo-bearcub"
 
 [markup.highlight]
   style = "monokai"
+
+[minify]
+  disableHTML = true
