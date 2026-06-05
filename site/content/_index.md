@@ -6,7 +6,7 @@ draft = false
 
 ## About {#about}
 
-<img src="/images/profile.png" alt="Alex Leviyev" class="profile-photo">
+<img src="images/profile.png" alt="Alex Leviyev" class="profile-photo">
 
 I'm Dr. Alex Leviyev, a researcher working at the intersection of machine learning, optimization, statistics, and algorithms.
 I completed my Physics Ph.D at UT Austin's [Center for Gravitational Physics](https://weinberg.utexas.edu/research/center-gravitational-physics) under Aaron Zimmerman.
