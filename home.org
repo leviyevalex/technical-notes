@@ -59,7 +59,7 @@ bash export.sh
 # Restart Hugo server
 pkill -f "hugo server" 2>/dev/null; sleep 0.3
 cd "$BLOG_DIR/site"
-hugo server --port 1313 --bind 127.0.0.1 > /tmp/hugo-server.log 2>&1 &
+hugo server --port 1313 --bind 127.0.0.1 --baseURL "http://localhost:1313/" > /tmp/hugo-server.log 2>&1 &
 echo "Done. Server at http://localhost:1313 (log: /tmp/hugo-server.log)"
 #+end_src
 

@@ -8,3 +8,4 @@ site/resources/
 *.fdb_latexmk
 *.out
 *.pdf
+.last-export
