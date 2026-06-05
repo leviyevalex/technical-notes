@@ -40,6 +40,7 @@ If you spot an error, a gap in reasoning, or a cleaner proof, please reach out: 
 
 #+print_bibliography:
 
+
 * Tasks :noexport:
 
 - [X] Figure out the appropriate workflow for pushing changes onto the site
