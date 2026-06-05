@@ -9,6 +9,21 @@ MathJax = {
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <style>
+.theorem::before { content: "Theorem."; font-weight: bold; display: block; margin-bottom: 0.3em; }
+.theorem[data-name]::before { content: "Theorem (" attr(data-name) ")."; }
+.lemma::before { content: "Lemma."; font-weight: bold; display: block; margin-bottom: 0.3em; }
+.lemma[data-name]::before { content: "Lemma (" attr(data-name) ")."; }
+.proposition::before { content: "Proposition."; font-weight: bold; display: block; margin-bottom: 0.3em; }
+.proposition[data-name]::before { content: "Proposition (" attr(data-name) ")."; }
+.corollary::before { content: "Corollary."; font-weight: bold; display: block; margin-bottom: 0.3em; }
+.corollary[data-name]::before { content: "Corollary (" attr(data-name) ")."; }
+.definition::before { content: "Definition."; font-weight: bold; display: block; margin-bottom: 0.3em; }
+.definition[data-name]::before { content: "Definition (" attr(data-name) ")."; }
+.remark::before { content: "Remark."; font-weight: bold; display: block; margin-bottom: 0.3em; }
+.remark[data-name]::before { content: "Remark (" attr(data-name) ")."; }
+.note::before { content: "Note."; font-weight: bold; display: block; margin-bottom: 0.3em; }
+.note[data-name]::before { content: "Note (" attr(data-name) ")."; }
+
 .theorem, .lemma, .proposition, .corollary {
   border-left: 3px solid #8cc2dd;
   background: #1e2a35;
@@ -66,4 +81,133 @@ figure img[src$=".svg"] {
   margin: 0 auto;
 }
 figcaption { font-size: 0.9em; color: #888; margin-top: 0.4em; }
+
+/* Profile photo */
+.profile-photo {
+  float: right;
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  object-position: center 35%;
+  border-radius: 50%;
+  margin: 0 0 1rem 1.5rem;
+  border: 2px solid #8cc2dd;
+}
+
+/* Social links */
+.social-links {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 2rem;
+  clear: both;
+}
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #8cc2dd;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.social-link:hover { opacity: 0.75; }
+.social-link svg { width: 18px; height: 18px; fill: currentColor; }
+
+/* Table of Contents */
+.ox-hugo-toc {
+  border-left: 3px solid #8cc2dd;
+  padding: 0.6em 1em;
+  margin: 1.5em 0;
+  display: inline-block;
+  min-width: 220px;
+}
+.ox-hugo-toc .heading {
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8cc2dd;
+  margin-bottom: 0.4em;
+}
+.ox-hugo-toc ul { margin: 0; padding-left: 0.5em; list-style: none; }
+.ox-hugo-toc li { margin: 0.2em 0; font-size: 0.88rem; }
+.ox-hugo-toc a { color: #c9d1d9; text-decoration: none; }
+.ox-hugo-toc a:hover { color: #8cc2dd; }
+.ox-hugo-toc .section-num { color: #666; margin-right: 0.4em; }
+
+/* Citation block */
+.citation {
+  margin-top: 2rem;
+  border-top: 1px solid #2d3748;
+  padding-top: 1rem;
+}
+.citation summary {
+  cursor: pointer;
+  color: #8cc2dd;
+  font-size: 0.85rem;
+  user-select: none;
+}
+.citation summary:hover { opacity: 0.8; }
+.citation-body { position: relative; margin-top: 0.75rem; }
+.citation pre {
+  background: #161b22;
+  border: 1px solid #2d3748;
+  border-radius: 4px;
+  padding: 0.8em 1em;
+  font-size: 0.78rem;
+  overflow-x: auto;
+  color: #c9d1d9;
+  margin: 0;
+}
+.copy-btn {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.5rem;
+  background: #2d3748;
+  color: #8cc2dd;
+  border: none;
+  border-radius: 3px;
+  padding: 0.2em 0.6em;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+.copy-btn:hover { background: #3d4f6b; }
+
+/* Site header */
+.site-header { margin-bottom: 0.5rem; }
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-decoration: none;
+  color: inherit;
+}
+.header-brand:hover { text-decoration: none; opacity: 0.85; }
+.header-logo { flex-shrink: 0; }
+.header-text { display: flex; flex-direction: column; gap: 0.1rem; }
+.header-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #c9d1d9;
+  letter-spacing: -0.01em;
+}
+.header-tagline { font-size: 0.78rem; color: #666; }
+header nav {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin-top: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #2d3748;
+}
+header nav a { text-decoration: none; }
+.nav-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: 0.4rem;
+  color: #8cc2dd;
+  opacity: 0.7;
+}
+.nav-social:hover { opacity: 1; }
+.nav-social svg { width: 16px; height: 16px; fill: currentColor; display: block; }
 </style>

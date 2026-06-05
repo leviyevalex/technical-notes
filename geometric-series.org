@@ -8,12 +8,12 @@ The geometric series is one of the most fundamental results in analysis, underpi
 
 * The closed form
 
-#+begin_definition
+#+begin_definition Geometric Series
 A *geometric series* with ratio $r$ and first term $a$ is the sum
 $$S_n = \sum_{k=0}^{n} a r^k = a + ar + ar^2 + \cdots + ar^n.$$
 #+end_definition
 
-#+begin_theorem
+#+begin_theorem Partial Sum Formula
 For $r \neq 1$,
 $$\sum_{k=0}^{n} r^k = \frac{1 - r^{n+1}}{1 - r}.$$
 #+end_theorem
@@ -25,7 +25,7 @@ $$S_n - r S_n = 1 - r^{n+1} \implies S_n = \frac{1 - r^{n+1}}{1-r}. \qquad \squa
 
 * The infinite series
 
-#+begin_corollary
+#+begin_corollary Infinite Geometric Series
 If $|r| < 1$ then $\displaystyle\sum_{k=0}^{\infty} r^k = \frac{1}{1-r}$.
 #+end_corollary
 

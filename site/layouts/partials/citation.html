@@ -1,0 +1,10 @@
+{{ $slug := .File.ContentBaseName }}
+{{ $key := printf "leviyev%s%s" (.Date.Format "2006") ($slug | replaceRE "-" "") }}
+{{ $bibtex := printf "@misc{%s,\n  author = {Leviyev, Alex},\n  title  = {{%s}},\n  year   = {%s},\n  month  = {%s},\n  url    = {%s},\n  note   = {O(1) Thoughts}\n}" $key .Title (.Date.Format "2006") (.Date.Format "1") .Permalink }}
+<details class="citation">
+  <summary>Cite this post</summary>
+  <div class="citation-body">
+    <pre id="bibtex-{{ $key }}">{{ $bibtex }}</pre>
+    <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('bibtex-{{ $key }}').innerText)">Copy</button>
+  </div>
+</details>

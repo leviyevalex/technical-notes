@@ -1,0 +1,65 @@
+#+SETUPFILE: setup-blog.org
+#+HUGO_DRAFT: true
+
+* Chapter 1: Combinatorics
+
+** The Birthday Problem
+:PROPERTIES:
+:EXPORT_FILE_NAME: birthday-problem
+:EXPORT_DATE: 2026-06-04
+:EXPORT_HUGO_DRAFT: false
+:END:
+
+How many people must be in a room before the probability that two share a birthday exceeds $1/2$?
+
+#+begin_theorem
+In a group of $n$ people, the probability that at least two share a birthday is
+$$P(n) = 1 - \frac{365!}{(365-n)! \cdot 365^n}.$$
+#+end_theorem
+
+#+begin_proof
+The complement is the event that all birthdays are distinct. The first person can have any birthday, the second must avoid 1 date, and so on:
+$$P(\text{all distinct}) = 1 \cdot \frac{364}{365} \cdot \frac{363}{365} \cdots \frac{365-n+1}{365}.$$
+Subtracting from 1 gives the result.
+#+end_proof
+
+The threshold is $n = 23$: with 23 people, $P(23) \approx 0.507$.
+
+** The Coupon Collector
+:PROPERTIES:
+:EXPORT_FILE_NAME: coupon-collector
+:EXPORT_DATE: 2026-06-04
+:EXPORT_HUGO_DRAFT: false
+:END:
+
+A cereal box contains one of $n$ distinct coupons uniformly at random. How many boxes must you buy to collect all $n$ coupons?
+
+#+begin_theorem
+The expected number of boxes to collect all $n$ coupons is
+$$E[T] = n \sum_{k=1}^{n} \frac{1}{k} = n H_n \sim n \ln n.$$
+#+end_theorem
+
+#+begin_proof
+Let $T_k$ be the number of additional boxes needed to go from $k-1$ distinct coupons to $k$. At that stage, each box yields a new coupon with probability $(n - k + 1)/n$, so $T_k \sim \text{Geom}\!\left(\frac{n-k+1}{n}\right)$ and $E[T_k] = \frac{n}{n-k+1}$. Summing over $k = 1, \ldots, n$:
+$$E[T] = \sum_{k=1}^{n} \frac{n}{n-k+1} = n \sum_{j=1}^{n} \frac{1}{j} = n H_n. \qquad \square$$
+#+end_proof
+
+* Chapter 2: Expectation and Variance
+
+** St. Petersburg Paradox
+:PROPERTIES:
+:EXPORT_FILE_NAME: st-petersburg-paradox
+:EXPORT_DATE: 2026-06-04
+:EXPORT_HUGO_DRAFT: false
+:END:
+
+A fair coin is flipped until the first head. If the first head appears on flip $k$, you win $2^k$ dollars. What is a fair price to pay to play?
+
+The expected winnings are
+$$E[X] = \sum_{k=1}^{\infty} 2^k \cdot \frac{1}{2^k} = \sum_{k=1}^{\infty} 1 = \infty.$$
+
+Despite the infinite expected value, no rational person would pay more than a few dollars to play. This is the *St. Petersburg paradox*, resolved by noting that expected value alone does not capture risk — one must account for the utility of money.
+
+#+begin_remark
+Daniel Bernoulli (1738) proposed using logarithmic utility $u(x) = \ln x$, under which the expected utility is finite: $E[\ln X] = \sum_{k=1}^{\infty} k \ln 2 \cdot 2^{-k} = 2 \ln 2 < \infty$.
+#+end_remark

@@ -1,0 +1,74 @@
+#+TITLE: Technical Notes
+#+HUGO_BASE_DIR: ~/Documents/org/blog/site
+#+HUGO_SECTION: /
+#+EXPORT_FILE_NAME: _index
+#+HUGO_DRAFT: false
+#+bibliography: ~/Documents/org/blog/references.bib
+#+cite_export: csl /Users/alexleviyev/Documents/emacs-writing-studio/documents/apa6.csl
+
+* About
+
+#+html: <img src="/images/profile.png" alt="Alex Leviyev" class="profile-photo">
+
+I'm Dr. Alex Leviyev, a researcher working at the intersection of machine learning, optimization, statistics, and algorithms.
+I completed my Physics Ph.D at UT Austin's [[https://weinberg.utexas.edu/research/center-gravitational-physics][Center for Gravitational Physics]] under Aaron Zimmerman.
+My research focused on developing first-order parameter estimation algorithms for gravitational wave astronomy [cite:@leviyev2024dissertation].
+The broader thrust of this work has been building high-performance, GPU-accelerated sampling algorithms that handle multimodality, degeneracy, and non-Euclidean support spaces.
+These are the kinds of challenges that arise naturally in gravitational wave data science [cite:@leviyev2025langevin].
+Our code is written in pure [[https://docs.jax.dev/en/latest/][JAX]] and available on [[https://github.com/leviyevalex/langevin_birth_death][Github]].
+I recently learned that my work on second-order variational inference algorithms [cite:@leviyev2022stein] is being used by a group at the [[https://www.noaa.gov][National Oceanic and Atmospheric Administration]] for weather forecasting, which was a fun surprise.
+
+* Purpose
+
+#+begin_quote
+"What I cannot create, I do not understand."
+— Richard P. Feynman
+#+end_quote
+
+This blog is, first and foremost, selfish in its purpose.
+Writing about a topic and explaining it to others forces me to understand it deeply and keeps me honest.
+My work demands a steady stream of calculations and concepts to internalize: re-deriving results from papers, filling in gaps left by textbooks, and documenting my thinking on various problems and puzzles (interview prep included).
+Over time, I've accumulated a sizable collection of derivations that rarely see the light of day.
+Rather than let them gather dust, this blog is my way of getting them into a presentable state.
+Some of these notes may eventually find their way into research papers or books.
+In the meantime, I hope they're useful to anyone working through similar topics.
+
+All of these notes started as a personal knowledge base written in org-mode.
+The content here spans a range of subjects, but mostly revolve around algorithms, machine learning, and probability theory.
+You will also find my solutions to various coding challenges and puzzles I encounter for quantitative finance and tech interviews.
+If you spot an error, a gap in reasoning, or a cleaner proof, please reach out: I'd like to know!
+
+#+print_bibliography:
+
+* Tasks :noexport:
+
+- [X] Figure out the appropriate workflow for pushing changes onto the site
+- [ ] Pick 3 actual blog posts to add to start with.
+- [ ] How do I host this on github pages?
+- [ ] Add tags to posts?
+- [X] How to add a ToC to the blog post?
+
+#+begin_src bash :results output
+BLOG_DIR=~/Documents/org/blog
+cd "$BLOG_DIR"
+
+# Export all org files to Hugo markdown
+bash export.sh
+
+# Restart Hugo server
+pkill -f "hugo server" 2>/dev/null; sleep 0.3
+cd "$BLOG_DIR/site"
+hugo server --port 1313 --bind 127.0.0.1 > /tmp/hugo-server.log 2>&1 &
+echo "Done. Server at http://localhost:1313 (log: /tmp/hugo-server.log)"
+#+end_src
+
+#+RESULTS:
+: Exporting geometric-series.org...
+: Exporting home.org...
+: Exporting probability-problems.org...
+: Exporting random-walk.org...
+: Exporting sorting-algorithms.org...
+: Done.
+: Done. Server at http://localhost:1313 (log: /tmp/hugo-server.log)
+
+http://localhost:1313
