@@ -1,4 +1,4 @@
-baseURL = "http://localhost:1313/"
+baseURL = "https://leviyevalex.github.io/technical-notes/"
 languageCode = "en-us"
 title = "Technical Notes"
 copyright = "© 2026 Alex Leviyev"
