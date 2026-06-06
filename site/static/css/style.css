@@ -32,29 +32,25 @@ th { background: #f4f4f4; }
 /* Figures */
 figure { text-align: center; margin: 1.5em 0; }
 figure img, figure svg { max-width: 100%; }
-figcaption { font-size: 0.9em; color: #555; margin-top: 0.4em; }
+figcaption { font-size: 0.9em; margin-top: 0.4em; }
 
 /* Theorem environments */
 .theorem, .lemma, .proposition, .corollary {
   border-left: 3px solid #1e5080;
-  background: #f0f4ff;
   padding: 0.6em 1em;
   margin: 1em 0;
-  border-radius: 0 4px 4px 0;
 }
 .definition {
   border-left: 3px solid #14643c;
-  background: #f0fff4;
   padding: 0.6em 1em;
   margin: 1em 0;
-  border-radius: 0 4px 4px 0;
 }
 .remark, .note {
   border-left: 3px solid #888;
-  background: #f9f9f9;
   padding: 0.6em 1em;
   margin: 1em 0;
 }
+.unpublished-ref { color: #aaa; cursor: default; }
 .proof {
   padding: 0.4em 1em;
   margin: 1em 0;

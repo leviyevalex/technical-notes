@@ -1,5 +1,13 @@
+# SINGLE SOURCE OF TRUTH for deployment URL.
+# This is the only value that needs to change when switching hosts.
+# If the site lives at a subpath (e.g. /technical-notes/), include it here.
+# If the site lives at the root of a domain, use "https://yourdomain.com/".
+# The figure shortcode and absURL calls read this value dynamically — no
+# other files need to be touched when this changes.
+# To keep this file host-agnostic, set baseURL = "/" here and pass the real
+# URL at build time: hugo --minify --baseURL "https://..."
 baseURL = "https://leviyevalex.github.io/technical-notes/"
-languageCode = "en-us"
+locale = "en-us"
 title = "Technical Notes"
 copyright = "© 2026 Alex Leviyev"
 theme = "hugo-bearcub"

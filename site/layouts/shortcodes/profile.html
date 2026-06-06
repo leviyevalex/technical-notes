@@ -1,1 +1,6 @@
+{{- /*
+  absURL prepends Site.BaseURL to a relative path, correctly handling any
+  subpath. The path must NOT have a leading "/" — absURL with a leading "/"
+  treats it as domain-root-relative and ignores the subpath in baseURL.
+*/ -}}
 <img src="{{ "images/profile.png" | absURL }}" alt="Alex Leviyev" class="profile-photo">

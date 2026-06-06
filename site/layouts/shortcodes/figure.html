@@ -1,4 +1,12 @@
-<figure>
+<figure{{ with .Get "id" }} id="{{ . }}"{{ end }}>
+  {{- /*
+    Subpath fix: ox-hugo always emits src="/figures/foo.svg" (absolute from
+    domain root). On a subpath host like /technical-notes/, that would resolve
+    to the wrong location. We strip the leading "/" to make the path relative,
+    then prepend Site.BaseURL (which includes the subpath). This works for any
+    baseURL — root domains, subpaths, and local dev — without code changes.
+    The only value that ever needs updating is baseURL in hugo.toml.
+  */ -}}
   <img src="{{ printf "%s%s" (printf "%s" .Site.BaseURL) (.Get "src" | strings.TrimPrefix "/") }}" alt="{{ .Get "caption" }}">
   {{ with .Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end }}
 </figure>

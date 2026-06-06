@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>math-refs.js — Test Suite</title>
+<style>
+  body { font-family: monospace; max-width: 700px; margin: 2em auto; padding: 0 1em; background: #1a1a1a; color: #ccc; }
+  h1 { color: #8cc2dd; }
+  .pass { color: #56a97a; }
+  .fail { color: #dd6666; font-weight: bold; }
+  .suite { margin: 1.5em 0 0.5em; color: #8cc2dd; font-size: 1.1em; }
+  #fixture { display: none; }
+  #summary { margin-top: 2em; font-size: 1.2em; border-top: 1px solid #444; padding-top: 1em; }
+</style>
+</head>
+<body>
+<h1>math-refs.js — Test Suite</h1>
+<div id="results"></div>
+<div id="summary"></div>
+
+<!-- Hidden fixture: mock page structure that math-refs.js will process -->
+<div id="fixture">
+  <h2 id="sec1"><span class="section-num">1</span> Section One</h2>
+
+  <div class="theorem" id="thm:named" data-name="Named Theorem"><p>Body.</p></div>
+  <div class="theorem"><p>Unnamed theorem.</p></div>
+  <div class="definition" id="def:named" data-name="Named Definition"><p>Body.</p></div>
+
+  <h2 id="sec2"><span class="section-num">2</span> Section Two</h2>
+
+  <div class="lemma" id="lem:test"><p>Lemma body.</p></div>
+  <div class="corollary" id="cor:test"><p>Corollary body.</p></div>
+
+  <figure id="fig:test">
+    <img src="test.svg" alt="">
+    <figcaption>Test figure.</figcaption>
+  </figure>
+
+  <p id="cref-p1">See \cref{thm:named} and \cref{fig:test}.</p>
+  <p id="cref-p2">Also \cref{unknown-id} stays literal.</p>
+  <p id="cref-p3">\Cref{cor:test} at sentence start.</p>
+
+  <!-- Should be ignored by walker -->
+  <code>\cref{thm:named} inside code</code>
+  <pre>\cref{thm:named} inside pre</pre>
+</div>
+
+<script src="./math-refs.js"></script>
+<script>
+var passed = 0;
+var failed = 0;
+var results = document.getElementById('results');
+
+function assert(label, condition) {
+  var el = document.createElement('div');
+  if (condition) {
+    el.className = 'pass';
+    el.textContent = '✓ ' + label;
+    passed++;
+  } else {
+    el.className = 'fail';
+    el.textContent = '✗ ' + label;
+    failed++;
+  }
+  results.appendChild(el);
+}
+
+function suite(name) {
+  var el = document.createElement('div');
+  el.className = 'suite';
+  el.textContent = '── ' + name;
+  results.appendChild(el);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Move fixture into body so math-refs.js can find it, then run checks
+  // math-refs.js already ran on DOMContentLoaded; we need it to run on the fixture.
+  // Since fixture is hidden (display:none), querySelector still finds it.
+  // Re-run by temporarily making it visible and re-triggering is complex,
+  // so we just check the results that math-refs.js already produced.
+
+  suite('Environment numbering');
+  var thm1 = document.querySelector('#thm\\:named .env-label');
+  assert('Theorem 1.1 (Named Theorem).', thm1 && thm1.textContent === 'Theorem 1.1 (Named Theorem).');
+
+  var thms = document.querySelectorAll('.theorem .env-label');
+  assert('Unnamed theorem is Theorem 1.2.', thms.length >= 2 && thms[1].textContent === 'Theorem 1.2.');
+
+  var def1 = document.querySelector('#def\\:named .env-label');
+  assert('Definition 1.3 (Named Definition).', def1 && def1.textContent === 'Definition 1.3 (Named Definition).');
+
+  var lem1 = document.querySelector('#lem\\:test .env-label');
+  assert('Lemma 2.1 (counter resets at h2).', lem1 && lem1.textContent === 'Lemma 2.1.');
+
+  var cor1 = document.querySelector('#cor\\:test .env-label');
+  assert('Corollary 2.2.', cor1 && cor1.textContent === 'Corollary 2.2.');
+
+  suite('data-numbered attribute');
+  assert('Theorem has data-numbered', document.querySelector('#thm\\:named').hasAttribute('data-numbered'));
+  assert('Unnamed theorem has data-numbered', document.querySelectorAll('.theorem')[1].hasAttribute('data-numbered'));
+
+  suite('Figure caption');
+  var cap = document.querySelector('#fig\\:test figcaption');
+  assert('Figure caption prefixed with "Figure 1:"', cap && cap.textContent === 'Figure 1: Test figure.');
+
+  suite('\\cref replacement');
+  var p1 = document.getElementById('cref-p1');
+  var links1 = p1.querySelectorAll('a.cref-link');
+  assert('\\cref{thm:named} → link', links1.length >= 1 && links1[0].textContent === 'Theorem 1.1');
+  assert('\\cref{fig:test} → link', links1.length >= 2 && links1[1].textContent === 'Figure 1');
+  assert('\\cref{thm:named} href is #thm:named', links1.length >= 1 && links1[0].getAttribute('href') === '#thm:named');
+
+  var p2 = document.getElementById('cref-p2');
+  assert('Unknown \\cref stays as literal text', p2.textContent.indexOf('\\cref{unknown-id}') !== -1);
+
+  var p3 = document.getElementById('cref-p3');
+  var links3 = p3.querySelectorAll('a.cref-link');
+  assert('\\Cref{cor:test} → link (same label as \\cref)', links3.length >= 1 && links3[0].textContent === 'Corollary 2.2');
+
+  suite('Ignored contexts');
+  var code = document.querySelector('code');
+  assert('\\cref inside <code> untouched', code.textContent === '\\cref{thm:named} inside code');
+  var pre = document.querySelector('pre');
+  assert('\\cref inside <pre> untouched', pre.textContent === '\\cref{thm:named} inside pre');
+
+  var summary = document.getElementById('summary');
+  var total = passed + failed;
+  summary.innerHTML = (failed === 0
+    ? '<span class="pass">All ' + total + ' tests passed.</span>'
+    : '<span class="fail">' + failed + ' of ' + total + ' tests FAILED.</span>');
+});
+</script>
+</body>
+</html>

@@ -23,33 +23,31 @@ MathJax = {
 .remark[data-name]::before { content: "Remark (" attr(data-name) ")."; }
 .note::before { content: "Note."; font-weight: bold; display: block; margin-bottom: 0.3em; }
 .note[data-name]::before { content: "Note (" attr(data-name) ")."; }
+/* JS-numbered environments: suppress CSS ::before, use injected .env-label instead */
+.theorem[data-numbered]::before, .lemma[data-numbered]::before,
+.proposition[data-numbered]::before, .corollary[data-numbered]::before,
+.definition[data-numbered]::before { content: none; }
+.env-label { font-weight: bold; display: block; margin-bottom: 0.3em; }
+.cref-link { text-decoration: none; }
+.unpublished-ref { color: #555; cursor: default; }
 
 .theorem, .lemma, .proposition, .corollary {
   border-left: 3px solid #8cc2dd;
-  background: #1e2a35;
   padding: 0.6em 1em;
   margin: 1em 0;
-  border-radius: 0 4px 4px 0;
-  color: #c9d1d9;
 }
 .definition {
   border-left: 3px solid #56a97a;
-  background: #1a2820;
   padding: 0.6em 1em;
   margin: 1em 0;
-  border-radius: 0 4px 4px 0;
-  color: #c9d1d9;
 }
 .remark, .note {
   border-left: 3px solid #666;
-  background: #252530;
   padding: 0.6em 1em;
   margin: 1em 0;
-  color: #aaa;
 }
 .corollary {
   border-left-color: #9d8cdd;
-  background: #21203a;
 }
 .proof {
   padding: 0.4em 1em;
@@ -80,7 +78,7 @@ figure img[src$=".svg"] {
   display: block;
   margin: 0 auto;
 }
-figcaption { font-size: 0.9em; color: #888; margin-top: 0.4em; }
+figcaption { font-size: 0.9em; margin-top: 0.4em; }
 
 /* Profile photo */
 .profile-photo {
@@ -211,3 +209,4 @@ header nav a { text-decoration: none; }
 .nav-social:hover { opacity: 1; }
 .nav-social svg { width: 16px; height: 16px; fill: currentColor; display: block; }
 </style>
+<script src="{{ .Site.BaseURL }}js/math-refs.js"></script>
